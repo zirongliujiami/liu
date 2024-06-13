@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>liu</title>
+</head>
+<body>
+<!--以下表单使用GET请求发送数据到当前的URL，method默认位GET-->
+<form>
+    <label>Name:
+     <input name="submitted-name" autocomplete="name">
+    </label>
+    <button>Save</button>
+</form>
+
+<!--以下表单使用POST请求发送数据到当前的URL-->
+<form method="post">
+    <label>Name:
+     <input name="submitted-name" autocomplete="name">
+    </label>
+    <button>Save</button>
+</form>
+
+<!--表单使用fieldset，legend，和label标签-->
+<form method="post">
+    <fieldset>
+        <legend>Title</legend>
+        <label><input type="radio" name="radio">Select me</label>
+    </fieldset>
+</form>
+</body>
+</html>
