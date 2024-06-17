@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+    <script language="javascript">//验证表单元素
+        function checkBlank(Form){
+            var v=true;
+            for(i=0;i<Form.length;i++){
+                if(Form.elements[i].value == ""){
+                    alert(Form.elements[i].title + "不能为空!");
+                    Form.elements[i].focus();
+                    v=false;
+                    return false;
+                }
+            }
+            return v;
+        }
+        //验证用户名
+        function checkusername(username){
+            var str=username;
+            var Expression=/^(\w){3,20}$/;
+            var objExp=new RegExp(Expression);
+            return objExp.test(str)
+        }
+        //验证密码是否合法
+        function checkPWD(PWD){
+            var str=PWD;
+            var Expression=/^[A-Za-z]{1}([A-Za-z0-9]|[._]){5,19}$/;
+            var objExp=new RegExp(Expression);
+            return objExp.test(str)
+        }
+        //验证E-mail地址是否合法
+        function checkemail(email){
+            var str=email;
+            var Expression=/\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
+            var objExp=new RegExp(Expression);
+            return objExp.test(str)
+        }
+
+        function check(Form){
+            if(checkBlank(Form)){
+                if(checkusername(Form.username.value)){
+                    if(checkPWD(Form.pwd.value)){
+                        if(Form.pwd.value==Form.repwd.value){
+                            if(checkemail(Form.email.value)){
+                                return true;
+                            }else{
+                                alert("请输入正确的E-mail地址！");
+                                Form.email.focus();
+                                return false;
+                            }
+                        }else {
+                            alert("您两次输入的密码不一致，请重新输入！");
+                            return false;
+                        }
+                    }else{
+                        alert("您输入的密码不合法！");
+                        Form.pwd.focus();
+                        return false;
+                    }
+                }else {
+                    alert("您输入的用户名不合法！");
+                    Form.username.focus();
+                    return false;
+                }
+            }else{
+                return false;
+            }
+        }
+    </script>
+</head>
+<body>
+<div id="main" align="center">
+    <h3>注册</h3>
+    <form name="form1" method="post" action="" onSubmit="return check(this)">
+        <ul>
+            <li style="list-style-type: none;">&emsp;&emsp;用户名：
+                <input type="text" name="username" id="username" placeholder="长度控制在3-20个字符之内" autofocus size="23" title="用户名">
+            </li>
+            <li style="list-style-type: none;">&emsp;&emsp;&emsp;密码：
+                <input name="pwd" type="password" id="pwd" placeholder="请设定在6-20位之间" size="23" title="密码">
+            </li>
+            <li style="list-style-type: none;">&emsp;确认密码：
+                <input type="password" name="repwd" id="repwd" size="23" title="确认密码">
+            </li>
+            <li style="list-style-type: none;">性别：
+                <input type="radio" name="sex" value="male" id="sex_1" checked> Male
+                <input type="radio" name="sex" value="female"id="sex_0"> Female
+            </li>
+            <li style="list-style-type: none;">&emsp;&emsp;&nbsp;E-mail：
+                <input type="email" name="email" id="email" size="23" title="E-mail地址">
+            </li>
+            <br /><hr align="center" width="600px"/>
+            <li style="list-style-type: none;">
+                <input type="submit" name="submit" id="submit" value="提交">
+                <input type="reset" name="reset" id="reset" value="重置">
+            </li>
+        </ul>
+    </form>
+</div>
+</body>
+</html>
